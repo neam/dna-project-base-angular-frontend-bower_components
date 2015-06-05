@@ -14,13 +14,13 @@
     "crossfilter": "~1.3.0"
   },
   "homepage": "https://github.com/motin/angular-dc",
-  "_release": "492ca88cb9",
+  "_release": "ab1cbb0e17",
   "_resolution": {
     "type": "branch",
-    "branch": "custom-chart-element",
-    "commit": "492ca88cb9c27eefa52c5b78438d6928d822278c"
+    "branch": "awaiting-prs",
+    "commit": "ab1cbb0e17ad6ae583dc2fc3c86785b6b88671c4"
   },
   "_source": "git@github.com:motin/angular-dc.git",
-  "_target": "custom-chart-element",
+  "_target": "awaiting-prs",
   "_originalSource": "git@github.com:motin/angular-dc.git"
 }
