@@ -48,6 +48,12 @@
                     }
                 }
 
+                if (obj.settings.singleTapToGo && $(this).attr("href") !== "#" && $(this).attr("href") !== "") {
+                        e.stopPropagation();
+                        document.location = $(this).attr("href");
+                        return;
+                }
+
                 $(this).parent("li").toggleClass("active").children("ul").collapse("toggle");
 
                 if ($toggle) {
@@ -65,8 +71,8 @@
 
             while (
                 div.innerHTML = "<!--[if gt IE " + (++v) + "]><i></i><![endif]-->",
-                all[0]
-            ) {
+                    all[0]
+                ) {
                 return v > 4 ? v : undef;
             }
         },
@@ -83,7 +89,7 @@
 
             //does not exists, add a new class and return false
             if (elem.parent().children("ul").length) {
-                 //first remove all other class
+                //first remove all other class
                 $this.find(".doubleTapToGo").removeClass("doubleTapToGo");
                 //add the class on the current element
                 elem.addClass("doubleTapToGo");
