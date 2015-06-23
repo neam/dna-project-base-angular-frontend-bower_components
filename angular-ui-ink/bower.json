@@ -1,0 +1,9 @@
+{
+  "name": "angular-ui-ink",
+  "version": "0.1.0",
+  "main": "angular-ui-ink.js",
+  "dependencies": {
+    "angular": ">= 1.0.8",
+    "underscore": "1.5.1"
+  }
+}

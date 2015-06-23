@@ -1,0 +1,19 @@
+{
+  "name": "angular-ui-ink",
+  "main": "angular-ui-ink.js",
+  "dependencies": {
+    "angular": ">= 1.0.8",
+    "underscore": "1.5.1"
+  },
+  "homepage": "https://github.com/hcliff/angular-ui-ink",
+  "_release": "748edbe0bf",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "748edbe0bf1bc40b5fbf5ac79d6d9de3288666dd"
+  },
+  "_source": "git://github.com/hcliff/angular-ui-ink.git",
+  "_target": "*",
+  "_originalSource": "angular-ui-ink",
+  "_direct": true
+}
