@@ -250,10 +250,10 @@ angular.module('ngHandsontable.directives', [])
            * INITIALIZE DATA
            */
           scope.$watch('datarows', function (newValue, oldValue) {
-            if (oldValue.length == scope.htSettings.minSpareRows && newValue.length != scope.htSettings.minSpareRows) {
+            //if (oldValue.length == scope.htSettings.minSpareRows && newValue.length != scope.htSettings.minSpareRows) {
               scope.htSettings['data'] = scope.datarows;
               settingFactory.updateHandsontableSettings(scope.hotInstance, scope.htSettings);
-            }
+            //}
           });
         }
       };
