@@ -162,7 +162,7 @@
             .on('change', onSelect2Changed.bind(this));
 
         self.$textarea.select2('open');
-
+        
         var selectionElement = $(self.TEXTAREA_PARENT).find('.select2-selection');
         selectionElement.css({
             height: $(self.TD).height() + 4,

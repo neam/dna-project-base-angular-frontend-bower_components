@@ -1,12 +1,12 @@
 {
   "name": "Handsontable-select2-editor",
   "homepage": "https://github.com/motin/Handsontable-select2-editor",
-  "_release": "4ec18ace63",
+  "_release": "af3e5147c1",
   "_resolution": {
     "type": "commit",
-    "commit": "4ec18ace630816f00e7275ea04a2019f23ccf432"
+    "commit": "af3e5147c1bbbf58121e463c804345e2d7702a66"
   },
   "_source": "https://github.com/motin/Handsontable-select2-editor.git",
-  "_target": "4ec18ace630816f00e7275ea04a2019f23ccf432",
+  "_target": "af3e5147c1bbbf58121e463c804345e2d7702a66",
   "_originalSource": "https://github.com/motin/Handsontable-select2-editor.git"
 }
