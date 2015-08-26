@@ -212,9 +212,9 @@
         //Handsontable.editors.TextEditor.prototype.focus.apply(this, arguments);
     };
 
-    Select2Editor.prototype.beginEditing = function (initialValue) {
-        var onBeginEditing = this.instance.getSettings().onBeginEditing;
-        if (onBeginEditing && onBeginEditing() === false) {
+    Select2Editor.prototype.beginEditing = function (initialValue, event) {
+        var onBeginEditing = this.options.onBeginEditing;
+        if (onBeginEditing && onBeginEditing(initialValue, event) === false) {
             return;
         }
 

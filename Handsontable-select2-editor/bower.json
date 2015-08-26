@@ -1,5 +1,6 @@
 {
   "name": "handsontable-select2-editor",
+  "version": "0.2.0",
   "dependencies": {
     "handsontable": "~0.16.0",
     "select2": "~4.0.0"
@@ -21,13 +22,5 @@
   "ignore": [
     "**/.*",
     "bower_components"
-  ],
-  "_release": "3d3e28fbe7",
-  "_resolution": {
-    "type": "commit",
-    "commit": "3d3e28fbe7f128085794cf72ab92cd485c57edb6"
-  },
-  "_source": "https://github.com/motin/Handsontable-select2-editor.git",
-  "_target": "3d3e28fbe7f128085794cf72ab92cd485c57edb6",
-  "_originalSource": "https://github.com/motin/Handsontable-select2-editor.git"
+  ]
 }
