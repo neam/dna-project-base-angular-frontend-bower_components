@@ -71,7 +71,7 @@
      */
     this.cheatSheetDescription = 'Show / hide this help menu';
 
-    this.$get = function ($rootElement, $rootScope, $compile, $window, $document) {
+    this.$get = function ($rootElement, $rootScope, $compile, $window, $document, $timeout) {
 
       // monkeypatch Mousetrap's stopCallback() function
       // this version doesn't return true when the element is an INPUT, SELECT, or TEXTAREA
@@ -282,7 +282,13 @@
       var previousEsc = false;
 
       function toggleCheatSheet() {
-        scope.helpVisible = !scope.helpVisible;
+
+        // Wrap in $timeout in order to trigger this at the end of any current
+        // $digest cycle, or else the change in scope may not be picked up when
+        // the toggle is made from a third party library event
+        $timeout(function () {
+          scope.helpVisible = !scope.helpVisible;
+        }, 0);
 
         // Bind to esc to remove the cheat sheet.  Ideally, this would be done
         // as a directive in the template, but that would create a nasty
