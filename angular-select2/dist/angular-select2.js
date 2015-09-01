@@ -47,7 +47,8 @@ angular.module("rt.select2", [])
             require: "ngModel",
             priority: 1,
             restrict: "E",
-            template: "<input type=\"hidden\"></input>",
+            transclude: true, // transclusion instructs angular to embed the original content from the DOM into the resultant output
+            template: "<select ng-transclude></select>",
             replace: true,
             link: function (scope, element, attrs, controller) {
                 var getOptions;
