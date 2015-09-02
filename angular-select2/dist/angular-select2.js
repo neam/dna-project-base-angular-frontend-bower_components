@@ -74,7 +74,7 @@ angular.module("rt.select2", [])
                 // Make sure that changes to the value is reflected in the select2 input
                 scope.$watch(
                     function () {
-                        return controller.$viewValue
+                        return controller.$viewValue;
                     },
                     function (newVal, oldVal) {
                         if (newVal === oldVal) {
