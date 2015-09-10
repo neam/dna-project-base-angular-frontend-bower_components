@@ -1,9 +1,9 @@
 {
   "name": "ngHandsontable",
-  "version": "0.6.0",
+  "version": "0.7.0-beta1",
   "dependencies": {
     "angular": "~1.4",
-    "handsontable": "~0.16.0"
+    "handsontable": "~0.17.0"
   },
   "homepage": "https://github.com/handsontable/ngHandsontable",
   "authors": [
@@ -30,13 +30,16 @@
     "test",
     "tests"
   ],
-  "_release": "0.6.0",
+  "devDependencies": {
+    "angular-ui-router": "~0.2.15"
+  },
+  "_release": "0.7.0-beta1",
   "_resolution": {
     "type": "version",
-    "tag": "0.6.0",
-    "commit": "4a4dca8d2e736494663c32da541332d0475069e0"
+    "tag": "0.7.0-beta1",
+    "commit": "8d17594c379be92ccbd709b19876ad613aeff9fe"
   },
   "_source": "git://github.com/handsontable/ngHandsontable.git",
-  "_target": "~0.6.0",
+  "_target": "~0.7.0",
   "_originalSource": "ngHandsontable"
 }
