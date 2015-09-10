@@ -1,7 +1,7 @@
 {
   "name": "handsontable-select2-editor",
   "dependencies": {
-    "handsontable": "~0.16.0",
+    "handsontable": "~0.17.0",
     "select2": "~4.0.0"
   },
   "homepage": "https://github.com/trebuchetty/Handsontable-select2-editor",
@@ -22,12 +22,12 @@
     "**/.*",
     "bower_components"
   ],
-  "_release": "3d3e28fbe7",
+  "_release": "80f0b7988f",
   "_resolution": {
     "type": "commit",
-    "commit": "3d3e28fbe7f128085794cf72ab92cd485c57edb6"
+    "commit": "80f0b7988f31305e63dae2e5b44a063e8b48741c"
   },
   "_source": "https://github.com/motin/Handsontable-select2-editor.git",
-  "_target": "3d3e28fbe7f128085794cf72ab92cd485c57edb6",
+  "_target": "80f0b7988f31305e63dae2e5b44a063e8b48741c",
   "_originalSource": "https://github.com/motin/Handsontable-select2-editor.git"
 }
