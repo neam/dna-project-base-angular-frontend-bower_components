@@ -17,11 +17,11 @@
     "angular-mocks": "~1.4.0"
   },
   "homepage": "https://github.com/motin/angular-select2",
-  "_release": "2d29fdf7e8",
+  "_release": "d7e28335d3",
   "_resolution": {
     "type": "branch",
     "branch": "select2-4.0-support-wip",
-    "commit": "2d29fdf7e847ab3e4a13a96e80a522a1ca4f38dc"
+    "commit": "d7e28335d3ccdf54efb7a4e50e69304e9fd5dfbf"
   },
   "_source": "https://github.com/motin/angular-select2.git",
   "_target": "select2-4.0-support-wip",
