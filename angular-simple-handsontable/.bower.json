@@ -1,0 +1,22 @@
+{
+  "name": "angular-simple-handsontable",
+  "main": "angular-simple-handsontable.js",
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0"
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/neam/angular-simple-handsontable",
+  "_release": "8adf335c80",
+  "_resolution": {
+    "type": "branch",
+    "branch": "develop",
+    "commit": "8adf335c80438a6df8946ca4c8f9fa34b20b1f98"
+  },
+  "_source": "https://github.com/neam/angular-simple-handsontable.git",
+  "_target": "develop",
+  "_originalSource": "https://github.com/neam/angular-simple-handsontable.git"
+}
