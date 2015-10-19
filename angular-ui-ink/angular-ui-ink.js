@@ -1,5 +1,17 @@
 'use strict';
 
+var toQueryString = function toQueryString(obj, prefix) {
+  var str = [];
+  for (var p in obj) {
+    var k = prefix ? prefix + '[' + p + ']' : p,
+      v = obj[p];
+    str.push(typeof v === 'object' ?
+      toQueryString(v, k) :
+      encodeURIComponent(k) + '=' + encodeURIComponent(v));
+  }
+  return str.join('&');
+};
+
 angular.module('ui.ink', [])
   .service('angularFilepicker', function($window) {
     return $window.filepicker;
@@ -9,7 +21,7 @@ angular.module('ui.ink', [])
       restrict: 'E',
       require: '?ngModel',
       link: function(scope, element, attrs, ctrl) {
-        if ((attrs.type === 'filepicker' || attrs.type === 'filepicker-dragdrop') && ctrl) {
+        if (attrs.type === 'filepicker' && ctrl) {
           angularFilepicker.constructWidget(element[0]);
           // Our ng-model is an array of images
           ctrl.$parsers.push(function(value) {
@@ -78,7 +90,7 @@ angular.module('ui.ink', [])
       require: '^filemanager',
       link: function(scope, element, attrs, fileManager) {
         element.on('click', function() {
-          angularFilepicker.pickMultiple(fileManager.inkOptions, function(picks) {
+          angularFilepicker.pickAndStore(fileManager.inkOptions, {}, function(picks) {
             scope.$apply(function() {
               fileManager.addPicks(_.pluck(picks, 'url'));
             });
@@ -113,6 +125,6 @@ angular.module('ui.ink', [])
         'fit': fit,
         'rotate': 'exif'
       };
-      return input + '/convert?' + _.toQueryString(options);
+      return input + '/convert?' + toQueryString(options);
     };
   });
