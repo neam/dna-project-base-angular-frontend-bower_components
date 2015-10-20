@@ -21,12 +21,18 @@ angular.module('ui.ink', [])
       restrict: 'E',
       require: '?ngModel',
       link: function(scope, element, attrs, ctrl) {
-        if (attrs.type === 'filepicker' && ctrl) {
+        if ((attrs.type === 'filepicker' || attrs.type === 'filepicker-dragdrop') && ctrl) {
           angularFilepicker.constructWidget(element[0]);
-          // Our ng-model is an array of images
+          // Our ng-model is an array of filepicker handle urls
           ctrl.$parsers.push(function(value) {
             if (angular.isString(value)) {
-              return value.split(',');
+              // split value into separate urls, making sure to handle convert-parameters
+              // example input value: https://www.filepicker.io/api/file/BHco4pXgiYtN9KFjZTyS/convert?crop=0,46,666,671,https://www.filepicker.io/api/file/kvnTESiCGDkxGFRpE3HR,https://www.filepicker.io/api/file/uNDKXZsyzVpDGtwQEX0w,https://www.filepicker.io/api/file/dLz6EVr7e6ZDORCm0rZO/convert?crop=0,0,501,370
+              var urls = value.split(',http');
+              for (var i = 1; i < urls.length; i++) {
+                urls[i] = "http" + urls[i];
+              }
+              return urls;
             }
             return value;
           });
