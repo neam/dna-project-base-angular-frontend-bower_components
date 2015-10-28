@@ -5,14 +5,13 @@
     "angular": ">= 1.0.8",
     "underscore": "1.5.1"
   },
-  "homepage": "https://github.com/hcliff/angular-ui-ink",
-  "_release": "22ac60e8e5",
+  "homepage": "https://github.com/neam/angular-ui-ink",
+  "_release": "174b624",
   "_resolution": {
-    "type": "branch",
-    "branch": "master",
-    "commit": "22ac60e8e5d2e74ae009c13fc873df604395f731"
+    "type": "commit",
+    "commit": "174b624"
   },
-  "_source": "git://github.com/hcliff/angular-ui-ink.git",
-  "_target": "*",
-  "_originalSource": "angular-ui-ink"
+  "_source": "git://github.com/neam/angular-ui-ink.git",
+  "_target": "174b624",
+  "_originalSource": "git://github.com/neam/angular-ui-ink.git"
 }

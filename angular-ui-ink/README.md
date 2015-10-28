@@ -5,7 +5,8 @@ Directive for filepicker.io
 requires scripts from filepicker.io
 
 Basic use:
-`<input type="filepicker" ng-model="images" />`
+`<input type="filepicker" ng-model="files" />`
+`<input type="filepicker-dragdrop" ng-model="files" />`
 
 Advanced use:
 
