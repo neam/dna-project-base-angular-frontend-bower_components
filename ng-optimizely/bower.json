@@ -1,0 +1,25 @@
+{
+  "name": "ng-optimizely",
+  "main": "ng-optimizely.js",
+  "version": "0.2.0",
+  "authors": [
+    "Jack Tarantino <jack@ofspades.com>"
+  ],
+  "description": "Angular module wrapper for Optimizely script",
+  "keywords": [
+    "angular",
+    "optimizely"
+  ],
+  "license": "MIT",
+  "homepage": "https://jack.ofspades.com",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": ">=1.2.0"
+  }
+}
