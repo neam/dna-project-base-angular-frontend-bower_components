@@ -1,10 +1,14 @@
 {
   "name": "angular-google-chart",
   "main": "./ng-google-chart.js",
-  "homepage": "http://bouil.github.io/angular-google-chart/",
+  "homepage": "http://angular-google-chart.github.io/angular-google-chart/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angular-google-chart/angular-google-chart.git"
+  },
+  "description": "Google Chart Tools AngularJS Directive Module",
   "authors": [
-    "Nicolas Bouillon <nicolas@bouil.org>",
-    "GitHub Contributors"
+    "GitHub Contributors <https://github.com/angular-google-chart/angular-google-chart/graphs/contributors>"
   ],
   "keywords": [
     "angular",
@@ -18,17 +22,23 @@
     ".jshintrc",
     "**/*.txt",
     "**/.*",
-    "bower_components"
+    "bower_components",
+    "package.json",
+    "partials",
+    "index.html",
+    "sample.js",
+    "style.css",
+    "images"
   ],
   "dependencies": {
     "angular": ">1.2.8"
   },
   "devDependencies": {},
-  "_release": "6cdd8d5c59",
+  "_release": "1efa7f9dac",
   "_resolution": {
     "type": "branch",
     "branch": "gh-pages",
-    "commit": "6cdd8d5c599dd8000dad568836f8160e09794e59"
+    "commit": "1efa7f9dac2a99d1b31711c49914aa9d6c6e7d21"
   },
   "_source": "https://github.com/bouil/angular-google-chart.git",
   "_target": "gh-pages",

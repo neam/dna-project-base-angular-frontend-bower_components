@@ -2,6 +2,14 @@ Google Chart Tools Directive Module
 ============================
 for AngularJS
 -------------
+[![Join the chat at https://gitter.im/angular-google-chart/angular-google-chart](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angular-google-chart/angular-google-chart?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+### Install
+
+Install with bower
+
+`bower install angular-google-chart --save`
+
 
 ### Goal
 
@@ -19,9 +27,22 @@ Release branch is `master` (idealy), and was created just because Bower needed i
 
 Please send your pull requests to `gh-pages`.
 
+### Building with Grunt
+
+In order to build the project you will need to have NodeJS and NPM installed.
+In commandline, from the root of the project, run `npm install`. This will install
+grunt and the required plugins.  Run `grunt` or `grunt build` to build `ng-google-chart.js` and
+`ng-google-chart.min.js` with included source maps. `grunt release` builds without
+source maps.
+
+### Running Tests
+
+Tests are run during build. Use `grunt watch` to run jshint and tests whenever
+source files are changed.
+
 ### Usage and Demo
 
-See sample files index.html and controllers in partials directory. [Live Demo](http://bouil.github.io/angular-google-chart/)
+See sample files index.html and controllers in partials directory. [Live Demo](http://angular-google-chart.github.io/angular-google-chart/)
 
 #### Other samples
 
@@ -33,6 +54,46 @@ See sample files index.html and controllers in partials directory. [Live Demo](h
 See [ChartWrapper](https://google-developers.appspot.com/chart/interactive/docs/reference#chartwrapperobject) and [DataTable](https://google-developers.appspot.com/chart/interactive/docs/reference#DataTable) documentation.
 
 ### Release notes
+
+#### Unreleased Changes
+
+*Added:*
+
+* GoogleChartService (handles the actual wrapping of the google charts API)
+* agcBeforeDraw directive (replaces before-draw on google-chart directive)
+* registerServiceListener method on GoogleChartController API
+* tests
+
+*Changed:*
+
+* much of the internal logic of the GoogleChartController was moved to a service, improving testability and resusability
+
+*Removed:*
+
+* before-draw attribute on google-chart directive (replaced by agcBeforeDraw directive)
+
+#### 0.1.0-beta.1
+
+*Added:*
+
+* gauge chart sample
+* basic API for hooking into chart events from other directives
+* API-level support for listeners/event-handlers on inner chart object
+* agc-on-error directive to register listener for google charts error event
+* agc-on-mouseover and agc-on-mouseout directives
+
+*Changed:*
+
+* Change package meta-data to reflect support for angular 1.2+
+* on-select now returns all selections if `selectedItems` is used instead of `selectedItem`
+* cancels extra draw cycles if many rapid changes are made to chart-object watched parameters
+* changed link function to controller in google-chart directive
+* broke out some functionality into separate directives (on-ready, on-select)
+* namespaced event directives (agc-on-ready, agc-on-error, agc-on-select, agc-on-mouseover, agc-on-mouseout)
+
+*Removed:*
+
+* support for `select` attribute
 
 #### 0.0.11
 
