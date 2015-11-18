@@ -13,8 +13,15 @@ var toQueryString = function toQueryString(obj, prefix) {
 };
 
 angular.module('ui.ink', [])
-  .service('angularFilepicker', function($window) {
-    return $window.filepicker;
+  .value('angularFilepickerConfig', {
+    key: 'abcdefghiljklmnopqrstuvxz',
+    responsiveOptions: {}
+  })
+  .service('angularFilepicker', function($window, angularFilepickerConfig) {
+    var fp = $window.filepicker;
+    fp.setKey(angularFilepickerConfig.key);
+    fp.setResponsiveOptions(angularFilepickerConfig.responsiveOptions);
+    return fp;
   })
   .directive('input', function(angularFilepicker) {
     return {
