@@ -4,6 +4,7 @@
   "main": "angular-ui-ink.js",
   "dependencies": {
     "angular": ">= 1.0.8",
+    "filepicker-js-bower": "filepicker-js#~2.2.1",
     "underscore": "1.5.1"
   }
 }
