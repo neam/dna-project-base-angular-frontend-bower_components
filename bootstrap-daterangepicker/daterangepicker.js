@@ -1,5 +1,5 @@
 /**
-* @version: 2.1.13
+* @version: 2.1.14
 * @author: Dan Grossman http://www.dangrossman.info/
 * @copyright: Copyright (c) 2012-2015 Dan Grossman. All rights reserved.
 * @license: Licensed under the MIT license. See http://www.opensource.org/licenses/mit-license.php
@@ -320,7 +320,7 @@
                 //Support unicode chars in the range names.
                 var elem = document.createElement('textarea');
                 elem.innerHTML = range;
-                rangeHtml = elem.value;
+                var rangeHtml = elem.value;
 
                 this.ranges[rangeHtml] = [start, end];
             }
@@ -567,7 +567,7 @@
                     minute = parseInt(this.container.find('.right .minuteselect').val(), 10);
                     second = this.timePickerSeconds ? parseInt(this.container.find('.right .secondselect').val(), 10) : 0;
                     if (!this.timePicker24Hour) {
-                        var ampm = this.container.find('.left .ampmselect').val();
+                        var ampm = this.container.find('.right .ampmselect').val();
                         if (ampm === 'PM' && hour < 12)
                             hour += 12;
                         if (ampm === 'AM' && hour === 12)
@@ -846,6 +846,16 @@
             } else if (side == 'right') {
                 selected = this.endDate ? this.endDate.clone() : this.startDate.clone();
                 minDate = this.startDate;
+
+                //Preserve the time already selected
+                var timeSelector = this.container.find('.calendar.right .calendar-time div');
+                if (timeSelector.html() != '') {
+                  selected.hour(timeSelector.find('.hourselect option:selected').val() || selected.hour());
+                  selected.minute(timeSelector.find('.minuteselect option:selected').val() || selected.minute());
+                  selected.second(timeSelector.find('.secondselect option:selected').val() || selected.second());
+                  if (selected.isAfter(maxDate))
+                    selected = maxDate.clone();
+                }
             }
 
             //
@@ -1489,5 +1499,7 @@
         });
         return this;
     };
+    
+    return DateRangePicker;
 
 }));
