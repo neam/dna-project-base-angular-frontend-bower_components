@@ -1,3 +1,102 @@
+## [6.7.7] - 2015-11-30
+
+### Fixed
+
+- [] Merge pull request #123 from auth0/password-strength-error (`Gabriel Andretta`)
+  https://github.com/auth0/auth0.js/commit/4ce134121257ddfecd5822eb6d2c986683a12dc8
+- [] Disable password strength error test for JSONP (`Gabriel Andretta`)
+  https://github.com/auth0/auth0.js/commit/20aae0a953c948f013afd7842f97d1b897bc8fb4
+- [] Fix password strength error message, closes #122 (`Gabriel Andretta`)
+  https://github.com/auth0/auth0.js/commit/2a3d60814fec559de969fe87754828500e593f38
+
+## [6.7.6] - 2016-10-26
+
+### Fixed
+
+- [] Revert changes from v6.7.5 as they are breaking appliance customers who are not on the latest version of Auth0 (`Peter Stromquist`)
+  https://github.com/auth0/auth0.js/commit/25a41e57d5ecb250b9b994891b8b9628bcdc2210
+
+## [6.7.5] - 2015-10-26
+
+### Fixed
+
+- [] Disallow jsonp to get SSO data (`Gabriel Andretta`)
+  https://github.com/auth0/auth0.js/commit/344c4a91ebf447fe91f5c443ab7389fdac759415
+
+## [6.7.4] - 2015-10-09
+
+### Fixed
+
+- [] Merge pull request #119 from toamitkumar/master (`Sandrino Di Mattia`)
+  https://github.com/auth0/auth0.js/commit/2ce4ac4ee4e374a87bc0e1e95551deaa4396d010
+- [] Added https support to help install behind the proxy firewall (`Amit Kumar`)
+  https://github.com/auth0/auth0.js/commit/57151e72bb1474d5a237722c765bae7c0428a2e2
+
+## [6.7.3] - 2015-09-29
+
+### Fixed
+
+- [] Consider aud arrays when decoding the id token (`Gabriel Andretta`)
+  https://github.com/auth0/auth0.js/commit/922556437da51f2a5b77613be2c156ae9a065c84
+
+## [6.7.2] - 2015-09-26
+
+### Fixed
+
+- [] Properly set response_type in requestMagicLink (`Gabriel Andretta`)
+  https://github.com/auth0/auth0.js/commit/8895643c1e9b5ce54c69501620ce3ae1d1801404
+
+## [6.7.1] - 2015-09-26
+
+### Fixed
+
+- [] Consider callback options when sending magiclink (`Gabriel Andretta`)
+  https://github.com/auth0/auth0.js/commit/e7ec405f001618791f958c3ed37ecf15cff3aaa1
+
+## [6.7.0] - 2015-09-08
+
+### Fixed
+
+- [] Merge pull request #110 from auth0/passwordless-redirect (`Cristian Douce`)
+  https://github.com/auth0/auth0.js/commit/df02ebc7300080c0e470fa94a37dbcffc0505e7d
+- [] New passwordless API (`Gabriel Andretta`)
+  https://github.com/auth0/auth0.js/commit/f4cdf13f5669586bab4776afc7ab78282c1ebc8e
+- [] Fix call to requestMagicLink in README (`Gabriel Andretta`)
+  https://github.com/auth0/auth0.js/commit/12988494c8733af41a30011f6040930c21fb70a7
+- [] Doc in README new passwordless API (`Gabriel Andretta`)
+  https://github.com/auth0/auth0.js/commit/16ac0bc003bd11b5bb9bc056c75e3ef1b034bed7
+- [] Fix tests (`Gabriel Andretta`)
+  https://github.com/auth0/auth0.js/commit/47e6380e37dbebcc1e52c1318dc2ffa78ed0be9a
+- [] WIP to allow redirect mode for passwordless login (`Gabriel Andretta`)
+  https://github.com/auth0/auth0.js/commit/6a6db948ce8bba6e052e47cc99f319bfdc20aaab
+
+## [6.6.4] - 2015-09-07
+
+### Fixed
+
+- [] remove packageify - closes #99 (`José F. Romaniello`)
+  https://github.com/auth0/auth0.js/commit/39acefc412d48f438f278197bb75e52e188a5608
+
+## [6.6.3] - 2015-09-03
+
+### Fixed
+
+- [] create a new popup window if the current one is closed (`José F. Romaniello`)
+  https://github.com/auth0/auth0.js/commit/9dd323e344957b5ec3b3f0fa8d0f83aaad747aaf
+
+## [6.6.2] - 2015-09-02
+
+### Fixed
+
+- [] Updated tests to run faster in latest 3 versions of browsers (`Cristian Douce`)
+  https://github.com/auth0/auth0.js/commit/7ac1ffd2327c89e386e28e8a10b17d0e961de2cb
+- [] Merge pull request #107 from auth0/fix/signup-popup (`Cristian Douce`)
+  https://github.com/auth0/auth0.js/commit/fd73f249181508ab2153d5f64929fba76faf56b5
+- [] Some codestyle changes (`Cristian Douce`)
+  https://github.com/auth0/auth0.js/commit/0f9cf8415460acddd9936e30a1e044c592d29c5e
+- [] Little refactor for popup opener when auto_login mode on signup (`Cristian Douce`)
+  https://github.com/auth0/auth0.js/commit/065c9e6cb2f950545c11bbcd8bd1d7b0004380ae
+
 ## [6.6.1] - 2015-08-28
 
 ### Fixed

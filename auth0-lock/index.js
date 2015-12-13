@@ -585,11 +585,11 @@ Auth0Lock.prototype.display = function(options, callback) {
       }
 
       // otherwise, just show signin
-      this._signinPanel(this.options, callback);
+      this._signinPanel();
     }
 
     if ('signup' === this.options.mode) {
-      this._signupPanel(this.options, callback);
+      this._signupPanel();
     }
 
     if ('reset' === this.options.mode) {
@@ -673,7 +673,7 @@ Auth0Lock.prototype.initialize = function(done) {
  */
 
 Auth0Lock.prototype._signinPanel = function (options) {
-  var panel = SigninPanel(this, { options: options || {} });
+  var panel = SigninPanel(this, options || {});
 
   // XXX: future Panel API placeholder
   // panel.on('submit', this.setLoadingMode);
@@ -707,7 +707,7 @@ Auth0Lock.prototype._signinPanel = function (options) {
  */
 
 Auth0Lock.prototype._signupPanel = function (options) {
-  var panel = SignupPanel(this, { options: options || {} });
+  var panel = SignupPanel(this, options || {});
 
   this._setTitle(this.options.i18n.t('signup:title'));
 
@@ -814,6 +814,9 @@ Auth0Lock.prototype.setPanel = function(panel, name) {
   var el = 'function' === typeof panel.render ? panel.render() : panel;
   var pname = 'function' === typeof panel.render ? panel.name : (name || 'signin');
 
+  // Remember current panel
+  this.$panel = panel;
+
   //Removes error messages on new views.
   this._showError();
 
@@ -840,10 +843,10 @@ Auth0Lock.prototype.isAuth0Domain = function (prefix) {
   var domainUrl = utils.parseUrl('https://' + this.$options.domain);
   if (prefix) {
     return utils.endsWith(domainUrl.hostname, '.' + prefix + '.auth0.com') &&
-           domainUrl.hostname.match(/\./g).length === 3;
+      domainUrl.hostname.match(/\./g).length === 3;
   }
   return utils.endsWith(domainUrl.hostname, '.auth0.com') &&
-         domainUrl.hostname.match(/\./g).length === 2;
+    domainUrl.hostname.match(/\./g).length === 2;
 };
 
 /**
@@ -861,6 +864,9 @@ Auth0Lock.prototype.getAssetsUrl = function (assetsUrl, domain) {
   }
   if (this.isAuth0Domain('eu')) {
     return 'https://cdn.eu.auth0.com/';
+  }
+  if (this.isAuth0Domain('au')) {
+    return 'https://cdn.au.auth0.com/';
   }
   if (this.isAuth0Domain()) {
     return 'https://cdn.auth0.com/';
@@ -1148,10 +1154,19 @@ Auth0Lock.prototype._signinWithAuth0 = function (panel, connection) {
 
     if (err.status !== 401) {
       self._showError(err.message || self.options.i18n.t('signin:serverErrorText'));
+    } else if ('password_change_required' === err.code) {
+      self._showError(self.options.i18n.t('signin:passwordChangeRequiredErrorText'));
     } else {
       self._showError(self.options.i18n.t('signin:wrongEmailPasswordErrorText'));
+      password_input.focus();
+      // password_input.get(0).setSelectionRange(0, password_input.val().length);
     }
   });
+};
+
+Auth0Lock.prototype._autoSignin = function(email, password) {
+  this._signinPanel({initialEmail: email, initialPassword: password});
+  this._signinWithAuth0(this.$panel);
 };
 
 /**
@@ -1179,6 +1194,11 @@ Auth0Lock.prototype._signinSocial = function (e, connection, extraParams, panel)
   if (extra.connection_scopes) {
     // if no connection_scope was set for the connection we are ok with sending undefined
     extra.connection_scope = extra.connection_scopes[connectionName];
+  }
+
+  if (strategyName === 'facebook') {
+    extraParams = extraParams || {};
+    extraParams.display = 'popup';
   }
 
   if (strategy) {
@@ -1265,9 +1285,19 @@ Auth0Lock.prototype._signinPopupNoRedirect = function (connectionName, popupCall
       self._showError(self.options.i18n.t('networkError'));
     } else if (err.status !== 401) {
       self._showError(self.options.i18n.t('signin:serverErrorText'));
+    } else if ('unauthorized' === err.code && err.details && err.details.error_description === 'user is blocked') {
+      var message = self.options.i18n.t('signin:userBlockedErrorText');
+      self._showError(message || err.details.error_description);
+      self._focusError(email_input);
+      self._focusError(password_input);
     } else if ('unauthorized' === err.code) {
       var message = self.options.i18n.t('signin:unauthorizedErrorText');
       self._showError((err.details && err.details.error_description) || message);
+      self._focusError(email_input);
+      self._focusError(password_input);
+    } else if ('password_change_required' === err.code) {
+      var message = self.options.i18n.t('signin:passwordChangeRequiredErrorText');
+      self._showError(message);
       self._focusError(email_input);
       self._focusError(password_input);
     } else {

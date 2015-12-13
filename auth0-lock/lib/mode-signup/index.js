@@ -267,6 +267,18 @@ SignupPanel.prototype.submit = function() {
   debug('signup submit');
   widget.emit('signup submit', widget.options);
 
+  // IMPROVE: This is a hack to allow `loginAfterSignup` with `sso: true`
+  // since the auth0-js client requires a popup for that, and it needs to
+  // be open in the same thread as the event emitted by the user action
+  // FOLLOW: https://github.com/auth0/auth0.js/blob/065c9e6cb2f950545c11bbcd8bd1d7b0004380ae/index.js#L499-L504
+  var will_popup = options.loginAfterSignup && options.popup
+    && (options.sso || options.responseType !== 'token');
+
+  if (will_popup) {
+    panel.lock_safe_popup = widget.$auth0._buildPopupWindow({});
+    widget.$auth0._current_popup = null;
+  }
+
   widget.$auth0.signup({
     connection: connection.name,
     username:   (options._isUsernameRequired()) ? username : email,
@@ -290,7 +302,16 @@ SignupPanel.prototype.submit = function() {
     // Emit "signup success" for all non error cases.
     if (!err) { widget.emit('signup success'); }
 
-    if (!err && widget.options.loginAfterSignup) { return widget._signinWithAuth0(panel); }
+    if (!err && widget.options.loginAfterSignup) {
+      widget.$auth0._current_popup = panel.lock_safe_popup;
+      panel.lock_safe_popup = null;
+      return widget._autoSignin(email, password);
+    }
+
+    if (panel.lock_safe_popup) {
+      panel.lock_safe_popup.close();
+    }
+
     if (!err && 'function' === typeof callback) { return callback.apply(widget, args), widget.hide(); }
     if (!err) { return widget.hide(); }
 

@@ -1,6 +1,6 @@
 {
   "name": "auth0-lock",
-  "version": "7.8.1",
+  "version": "7.12.5",
   "description": "Auth0 Lock",
   "main": "./index.js",
   "keywords": [
@@ -25,11 +25,11 @@
   "author": "Auth0 <support@auth0.com> (http://auth0.com)",
   "license": "MIT",
   "dependencies": {
-    "auth0-js": "~6.6.1",
+    "auth0-js": "~6.7.4",
     "bean": "~1.0.4",
     "blueimp-md5": "^1.1.0",
     "bonzo": "^1.3.6",
-    "debug": "^2.1.2",
+    "debug": "^2.2.0",
     "domready": "~0.2.13",
     "password-sheriff": "^0.4.0",
     "sizzle": "^2.0.0",
@@ -39,7 +39,7 @@
   "devDependencies": {
     "brfs": "0.0.8",
     "browserify": "^8.1.1",
-    "bump": "git://github.com/ianstormtaylor/bump",
+    "bump-version": "^0.5.0",
     "css-prefix": "0.0.2",
     "ejsify": "0.1.0",
     "expect.js": "~0.2.0",
@@ -68,8 +68,8 @@
     "through": "^2.3.4",
     "uglify-js": "~2.4.15",
     "unreleased": "^0.0.5",
-    "zuul": "https://github.com/jfromaniello/zuul/tarball/phantom_custom_port",
-    "zuul-ngrok": "^2.0.1"
+    "zuul": "~3.4.0",
+    "zuul-ngrok": "~3.0.0"
   },
   "browserify": {
     "transform": [

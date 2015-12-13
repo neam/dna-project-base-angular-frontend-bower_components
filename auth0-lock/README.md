@@ -57,7 +57,7 @@ If you are targeting mobile audiences, it's recommended that you add:
 
 ### Browserify
 
-If you are using browserify to build your project, you will need to add the following transformations required by Auth0 Lock:
+If you are using Browserify to build your project, you will need to add the following transformations required by Auth0 Lock:
 
 ``` json
 {
@@ -69,6 +69,25 @@ If you are using browserify to build your project, you will need to add the foll
 }
 ```
 
+### webpack
+
+If you are using webpack, you will need to install loaders (`$ npm install --save brfs ejsify json-loader packageify transform-loader`) and then use them in your `webpack.config.js` file:
+
+```js
+loaders: [{
+  test: /node_modules\/auth0-lock\/.*\.js$/,
+  loaders: [
+    'transform-loader/cacheable?brfs',
+    'transform-loader/cacheable?packageify'
+  ]
+}, {
+  test: /node_modules\/auth0-lock\/.*\.ejs$/,
+  loader: 'transform-loader/cacheable?ejsify'
+}, {
+  test: /\.json$/,
+  loader: 'json-loader'
+}]
+```
 
 ## Documentation
 You can find the full documentation for Lock on the [Auth0 docs site](https://auth0.com/docs/libraries/lock).
@@ -86,7 +105,7 @@ You can find the full documentation for Lock on the [Auth0 docs site](https://au
 * [Release process][release-process] notes.
 * [Auth0Lock playground][playground-url]
 * [Using Refresh Tokens][using-refresh-tokens]
-* Legacy **Auth0Widget** [Migration guide][migration-guide] to **AuthoLock**
+* Legacy **Auth0Widget** [Migration guide][migration-guide] to **Auth0Lock**
 
 
 ## Demos

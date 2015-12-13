@@ -15,6 +15,7 @@ var Emitter = require('events').EventEmitter;
 var buttonTmpl = require('../html/zocial-button.ejs');
 var loginActionsTmpl = require('./login_actions.ejs');
 var gravatar = require('../gravatar');
+var trim = require('trim');
 
 /**
  * Expose SigninPanel
@@ -197,6 +198,14 @@ SigninPanel.prototype.bindAll = function() {
   }
 
   this.query('input').val('');
+
+  if (this.options.initialEmail) {
+    this.query('.a0-email input').val(this.options.initialEmail);
+  }
+
+  if (this.options.initialPassword) {
+    this.query('.a0-password input').val(this.options.initialPassword);
+  }
 
   // show email, password, separator and button if there are enterprise/db connections
   var anyEnterpriseOrDbConnection = options._isThereAnyEnterpriseOrDbConnection();
@@ -418,7 +427,8 @@ SigninPanel.prototype.onresetclick = function(e) {
 
 SigninPanel.prototype.onsignupclick = function(e) {
   stop(e);
-  this.widget._signupPanel(this.options);
+  var email = trim(this.query('.a0-email input').val() || '');
+  this.widget._signupPanel(email ? {initialEmail: email} : {});
 };
 
 
