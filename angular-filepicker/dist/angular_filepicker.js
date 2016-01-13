@@ -7,28 +7,34 @@ window.filepicker.plugin = 'angular_js_lib';'use strict';
 angular.module('angular-filepicker')
 .directive('filepicker', filepickerDirective);
 
-function filepickerDirective($rootScope, filepickerService){
-	return {
+function filepickerDirective($rootScope, filepickerService, $parse){
+    return {
         restrict: 'A',
         scope:{
             onSuccess:'&'
         },
         link: function(scope, element, attrs) {
+            var key, value;
             /*
-                pass orinal event
+                pass original event
             */
             element.bind('change', function(event) {
                 event.preventDefault();
-                scope.onSuccess({event: event.originalEvent});
+                scope.onSuccess({event: event.originalEvent || event});
                 $rootScope.$apply();
             });
-        	filepickerService.constructWidget(element);
+
+            element = element.length ? element[0] : element;
+
+            for (key in attrs.$attr){
+                value = attrs.$attr[key];
+                element.setAttribute(value, attrs[key]);
+            }
+
+            filepickerService.constructWidget(element);
         }
     };
-};
-
-
-'use strict';
+}'use strict';
 
 angular.module('angular-filepicker')
 .provider('filepicker', function() {

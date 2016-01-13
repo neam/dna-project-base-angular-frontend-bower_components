@@ -1001,7 +1001,7 @@ filepicker.extend("errors", function() {
 "use strict";
 
 filepicker.extend(function() {
-    var fp = this, VERSION = "2.1.3";
+    var fp = this, VERSION = "2.3.1";
     fp.API_VERSION = "v2";
     var setKey = function(key) {
         fp.apikey = key;
@@ -1538,7 +1538,7 @@ filepicker.extend("urls", function() {
     var dialog_base = base.replace("www", "dialog"), pick_url = dialog_base + "/dialog/open/", export_url = dialog_base + "/dialog/save/", convert_url = dialog_base + "/dialog/process/", pick_folder_url = dialog_base + "/dialog/folder/", store_url = base + "/api/store/";
     var allowedConversions = [ "crop", "rotate", "filter" ];
     var constructPickUrl = function(options, id, multiple) {
-        return pick_url + constructModalQuery(options, id) + (multiple ? "&multi=" + !!multiple : "") + (options.mimetypes !== undefined ? "&m=" + options.mimetypes.join(",") : "") + (options.extensions !== undefined ? "&ext=" + options.extensions.join(",") : "") + (options.maxSize ? "&maxSize=" + options.maxSize : "") + (options.maxFiles ? "&maxFiles=" + options.maxFiles : "") + (options.folders !== undefined ? "&folders=" + options.folders : "") + (options.storeLocation ? "&storeLocation=" + options.storeLocation : "") + (options.storePath ? "&storePath=" + options.storePath : "") + (options.storeContainer ? "&storeContainer=" + options.storeContainer : "") + (options.storeAccess ? "&storeAccess=" + options.storeAccess : "") + (options.webcamDim ? "&wdim=" + options.webcamDim.join(",") : "") + constructConversionsQuery(options.conversions);
+        return pick_url + constructModalQuery(options, id) + (multiple ? "&multi=" + !!multiple : "") + (options.mimetypes !== undefined ? "&m=" + options.mimetypes.join(",") : "") + (options.extensions !== undefined ? "&ext=" + options.extensions.join(",") : "") + (options.maxSize ? "&maxSize=" + options.maxSize : "") + (options.customSourceContainer ? "&customSourceContainer=" + options.customSourceContainer : "") + (options.customSourcePath ? "&customSourcePath=" + options.customSourcePath : "") + (options.maxFiles ? "&maxFiles=" + options.maxFiles : "") + (options.folders !== undefined ? "&folders=" + options.folders : "") + (options.storeLocation ? "&storeLocation=" + options.storeLocation : "") + (options.storePath ? "&storePath=" + options.storePath : "") + (options.storeContainer ? "&storeContainer=" + options.storeContainer : "") + (options.storeAccess ? "&storeAccess=" + options.storeAccess : "") + (options.webcamDim ? "&wdim=" + options.webcamDim.join(",") : "") + constructConversionsQuery(options.conversions);
     };
     var constructConvertUrl = function(options, id) {
         var url = options.convertUrl;
@@ -2740,12 +2740,16 @@ filepicker.extend("util", function() {
     var endsWith = function(str, suffix) {
         return str.indexOf(suffix, str.length - suffix.length) !== -1;
     };
+    var appendQueryToUrl = function(url, key, value) {
+        return url + (url.indexOf("?") >= 0 ? "&" : "?") + key + "=" + value;
+    };
     return {
         trim: trim,
         trimConvert: trimConvert,
         parseUrl: parseUrl,
         isUrl: isUrl,
-        endsWith: endsWith
+        endsWith: endsWith,
+        appendQueryToUrl: appendQueryToUrl
     };
 });
 
@@ -3219,9 +3223,6 @@ filepicker.extend("responsiveImages", function() {
     function getFpPixelRoundAttr(elem) {
         return elem.getAttribute("data-fp-pixel-round");
     }
-    function getFpImageQualityAttr(elem) {
-        return elem.getAttribute("fp-image-quality");
-    }
     function getSrcAttr(elem) {
         return elem.getAttribute("src");
     }
@@ -3365,7 +3366,8 @@ filepicker.extend("widgets", function() {
             "data-fp-crop-max": "cropMax",
             "data-fp-crop-min": "cropMin",
             "data-fp-show-close": "showClose",
-            "data-fp-conversions": "conversions"
+            "data-fp-conversions": "conversions",
+            "data-fp-custom-text": "customText"
         }, pickOnlyOptionsMap = {
             "data-fp-mimetypes": "mimetypes",
             "data-fp-extensions": "extensions",
@@ -3709,13 +3711,16 @@ filepicker.extend("widgets", function() {
         }
     };
     var constructPreview = function(domElement) {
-        var url = domElement.getAttribute("data-fp-url");
+        var url = domElement.getAttribute("data-fp-url"), css = domElement.getAttribute("data-fp-custom-css");
         if (!url || !fp.util.isFPUrl(url)) {
             return true;
         } else {
             url = url.replace("api/file/", "api/preview/");
         }
         var iframe = document.createElement("iframe");
+        if (css) {
+            url = fp.util.appendQueryToUrl(url, "css", css);
+        }
         iframe.src = url;
         iframe.width = "100%";
         iframe.height = "100%";

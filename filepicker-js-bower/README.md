@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/filepicker-js.svg)](https://badge.fury.io/js/filepicker-js)
+
 # filepicker-js-bower
 Bower-friendly version of [filepicker-js](https://github.com/filepicker/filepicker-js).
 

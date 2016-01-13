@@ -1,6 +1,6 @@
 {
   "name": "filepicker-js-bower",
-  "version": "2.2.1",
+  "version": "2.3.4",
   "homepage": "https://github.com/krystiangw/filepicker-js-bower",
   "description": "Filepicker javascript client library",
   "main": "filepicker.min.js",
@@ -25,14 +25,14 @@
     "test",
     "tests"
   ],
-  "_release": "2.2.1",
+  "_release": "2.3.4",
   "_resolution": {
     "type": "version",
-    "tag": "2.2.1",
-    "commit": "c4250b6536af620acaf4ccad3ab259b1a142807d"
+    "tag": "2.3.4",
+    "commit": "91487441f6edaf30714253561838e6f60d07b291"
   },
   "_source": "git://github.com/krystiangw/filepicker-js-bower.git",
-  "_target": "~2.2.1",
+  "_target": "2.3.4",
   "_originalSource": "filepicker-js",
   "_direct": true
 }
