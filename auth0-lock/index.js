@@ -693,6 +693,14 @@ Auth0Lock.prototype._signinPanel = function (options) {
 
   this.setPanel(panel);
 
+  var anyConnection = this.options._isThereAnyEnterpriseOrDbConnection()
+    || this.options._isThereAnySocialConnection()
+    || this.options._isThereAnyDBConnection();
+
+  if (!anyConnection) {
+    this._showError(this.options.i18n.t("noConnectionError"));
+  }
+
   return this;
 
 };
@@ -868,6 +876,9 @@ Auth0Lock.prototype.getAssetsUrl = function (assetsUrl, domain) {
   if (this.isAuth0Domain('au')) {
     return 'https://cdn.au.auth0.com/';
   }
+  if (this.isAuth0Domain('stage')) {
+    return 'https://cdn.stage.auth0.com/';
+  }
   if (this.isAuth0Domain()) {
     return 'https://cdn.auth0.com/';
   }
@@ -948,7 +959,7 @@ Auth0Lock.prototype._focusError = function(input, message) {
     // reset errors
     this.query('.a0-errors').removeClass('a0-errors');
     this.query('.a0-error-input').removeClass('a0-error-input');
-    this.query('.a0-error-message').remove();
+
     // reset animations
     return animation_shake_reset(this.$container);
   }
@@ -961,7 +972,7 @@ Auth0Lock.prototype._focusError = function(input, message) {
     .addClass('a0-error-input');
 
   if (!message) return;
-  input.parent().append($.create('<span class="a0-error-message">' + message + '</span>'));
+
   this.emit('error shown', message, input);
 };
 
@@ -1426,6 +1437,10 @@ Auth0Lock.prototype._clearPreviousPanel = function () {
   this._setPreviousPanel(null);
 };
 
+Auth0Lock._setOpenWindowFn = function(f) {
+  Auth0.prototype.openWindow = f;
+};
+
 /**
  * Private helpers
  */
@@ -1442,7 +1457,7 @@ Auth0Lock.prototype._clearPreviousPanel = function () {
 function animation_shake(context) {
   $('.a0-panel', context)
     .addClass('a0-errors')
-    .addClass('a0-animated a0-shake');
+    // .addClass('a0-animated a0-shake');
 }
 
 /**
