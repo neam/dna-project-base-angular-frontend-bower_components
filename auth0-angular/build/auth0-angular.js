@@ -369,6 +369,13 @@
                 }
               };
             var signinCall = authUtils.callbackify(signinMethod, successFn, errorFn, innerAuth0libraryConfiguration[libName || config.lib].library());
+            // Offline sign-in patch START
+            if (env.OFFLINE_DEV === 'true') {
+              // Auto-sign-in with fake data
+              successFn(window.auth0mockdata.profile, window.auth0mockdata.idToken, 'accessToken-foo', 'state-foo');
+              return;
+            }
+            // Offline sign-in patch END
             signinCall(options);
           };
           auth.signup = function (options, successCallback, errorCallback) {
