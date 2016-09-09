@@ -1,0 +1,14 @@
+{
+  "name": "hot-formula-parser",
+  "homepage": "https://github.com/handsontable/formula-parser",
+  "version": "1.0.17",
+  "_release": "1.0.17",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.17",
+    "commit": "649748047d7884c53bfacb0f18ad01be60d09f45"
+  },
+  "_source": "https://github.com/handsontable/formula-parser.git",
+  "_target": "~1.0.17",
+  "_originalSource": "https://github.com/handsontable/formula-parser.git"
+}
