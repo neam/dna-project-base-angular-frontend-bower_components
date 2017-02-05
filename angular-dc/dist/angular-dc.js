@@ -1,17 +1,10 @@
 (function(root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define(['angular', 'dc', 'lodash', 'd3'], function(angular, dc, _, d3) {
-            return (root.returnExportsGlobal = factory(angular, dc, _, d3));
-        });
-    } else if (typeof exports === 'object') {
-        // Node. Does not work with strict CommonJS, but
-        // only CommonJS-like enviroments that support module.exports,
-        // like Node.
-        module.exports = factory();
-    } else {
-        root['angularDc'] = factory(root.angular, root.dc, root._, root.d3);
-    }
+    // Patch for this legacy code to load with weback /motin
+    let angular = require('angular');
+    let dc = require('dc');
+    let _ = require('lodash');
+    let d3 = require('d3');
+    module.exports = factory(angular, dc, _, d3);
 }(this, function(angular, dc, _, d3) {
 
     'use strict';
