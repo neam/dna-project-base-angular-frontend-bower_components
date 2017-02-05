@@ -26,7 +26,31 @@
                 'onPreRedraw',
                 'onPreRender',
                 'onZoomed',
-                'postSetupChart'
+                'postSetupChart',
+                // Necessary since these do no longer get included in the list of valid attributes for whatever reason
+                'width',
+                'height',
+                'transitionDuration',
+                'margins',
+                'dimension',
+                'x',
+                'y',
+                'xUnits',
+                'yUnits',
+                'round',
+                'alwaysUseRounding',
+                'xUnits',
+                'elasticX',
+                'elasticY',
+                'renderHorizontalGridLines',
+                'legend',
+                'brushOn',
+                'options',
+                'group',
+                'radius',
+                'innerRadius',
+                'renderArea',
+                'centerBar',
             ];
             /* Called during the directive's linking phase, this function creates
        a Dc.js chart. The chart is configured based on settings read from
