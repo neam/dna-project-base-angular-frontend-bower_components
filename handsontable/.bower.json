@@ -46,14 +46,14 @@
   "devDependencies": {
     "chroma-js": "~0.5.6"
   },
-  "version": "0.27.0",
-  "_release": "0.27.0",
+  "version": "0.31.1",
+  "_release": "0.31.1",
   "_resolution": {
     "type": "version",
-    "tag": "0.27.0",
-    "commit": "f312355a554a295f466fc457c7f216ae3c30f271"
+    "tag": "0.31.1",
+    "commit": "e06425e73fbd34c354d2c6fc7ff2bd9e66c1973e"
   },
   "_source": "https://github.com/handsontable/handsontable.git",
-  "_target": "~0.27.0",
+  "_target": "~0.31.1",
   "_originalSource": "handsontable"
 }
