@@ -7,7 +7,12 @@
     // Add select2Options to default settings, or else ngHandsontable will not allow it to be defined in the hot-col element
     Handsontable.DefaultSettings.prototype.select2Options = {};
 
+    var _originalValue;
+
     Select2Editor.prototype.prepare = function (row, col, prop, td, originalValue, cellProperties) {
+
+        // Store original value
+        _originalValue = originalValue;
 
         // Prepare default selected value
         this.OPTIONELEMENT.setAttribute('value', originalValue);
@@ -192,7 +197,7 @@
 
     Select2Editor.prototype.val = function (value) {
         if (typeof value == 'undefined') {
-            return this.$textarea.val();
+            return this.$textarea.val() || _originalValue;
         } else {
             this.$textarea.val(value);
         }
