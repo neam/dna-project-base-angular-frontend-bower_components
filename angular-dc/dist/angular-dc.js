@@ -121,17 +121,18 @@
             }
 
             function getOptionsFromAttrs(scope, iAttrs, validOptions) {
-                return _(iAttrs.$attr).keys().intersection(validOptions).map(function(key) {
+                var candidateOptions = _(iAttrs.$attr).keys().intersection(validOptions);
+                var options = candidateOptions.reduce(function(result, valueWhichInThisCaseIsTheKey, keyWhichInThisCaseIsTheIndex, a, b, c) {
+                    var key = valueWhichInThisCaseIsTheKey;
                     var value = scope.$eval(iAttrs[key]);
                     // remove the dc- prefix if any
                     if (key.substring(0, 2) === 'dc') {
                         key = key.charAt(2).toLowerCase() + key.substring(3);
                     }
-                    return [
-                        key,
-                        value
-                    ];
-                }).zipObject().value();
+                    result[key] = value;
+                    return result;
+                }, {});
+                return options;
             }
             return {
                 restrict: 'A',
@@ -168,7 +169,7 @@
                                 return undefined;
                             }
                         });
-                        if (options.any(_.isUndefined)) {
+                        if (options.some(_.isUndefined)) {
                             // return undefined if there is at least one undefined option
                             // so that the $watch dont call us again at this $digest time
                             return undefined;
